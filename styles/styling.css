@@ -2,8 +2,14 @@
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
+* a{
+    text-decoration: none;
+}
+/* =========================index.html================================ */
+/* ------------------------------------------------------------- */
 /* Cabeçalho */
 #nav{
+    right: 8px;
     width: 360px;
     height: 100px;
     position: relative;
@@ -26,12 +32,14 @@
     width: 315px;
     height: 60px;
 }
+/* Texto do filtro main */
 #filterselect{
     margin: 20px 10px 4px 10px;
     display: block;
     color: #6D2080;
     font-size: 1.1em;
 }
+/* Opções main */
 #select{
     background-color: transparent;
     border: none;
@@ -39,8 +47,9 @@
     padding: 0 0 0 1em;
     margin-left: 10px;
     width: 100%;
-    color: #8D8D8D
+    color: #8D8D8D;
 }
+/* botão de pesquisa */
 #search{
     width: 160px;
     height: 40px;
@@ -51,4 +60,46 @@
     line-height: 40px;
     color: white;
     margin: 140px 50px 50px 165px;
+    cursor: pointer;
 }
+/* ------------------------------------------------------------- */
+/* Lista de Países */
+#countries-list{
+    position: relative;
+    margin-top: 200px;
+    display: grid; -ms-display: grid;
+    grid-template-columns: (1fr); -ms-grid-template-columns: (1fr);
+    grid-gap: 17px;
+  }
+  /* Div de cada país */
+.flag {
+    min-height: 140px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    border-radius: 20px;
+    border: 0.5px solid black;
+  }
+  /* ================================================================= */
+
+  /* =========================country.html================================ */
+  /* ------------------------------------------------------------- */
+#country{
+    margin-top: 20px;
+}
+.info{
+    margin: 8px;
+    color: rgb(92, 91, 91);
+    border: none;
+}
+#name{
+    margin-top: 20px;
+}
+#border p{
+    font-weight: bolder;
+}
+#bordercountries{
+    margin-top: 25px;
+}
+  /* ================================================================= */
