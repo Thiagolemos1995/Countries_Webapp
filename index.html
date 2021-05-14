@@ -16,15 +16,18 @@
         </nav>
         <div id="cardMain">
             <div id="filter">
-                <span id="filterselect">Filtrar por</span>
-                <select id="select">
-                    <option value="">Escolha uma Opção</option>
-                    <option value="Região">Região</option>
-                    <option value="Capital">Capital</option>
-                    <option value="Lingua">Língua</option>
-                    <option value="Páis">Páis</option>
-                    <option value="Código de ligação">Código de ligação</option>
-                </select>
+                <div id="mainfilter">
+                    <span id="filterselect">Filtrar por</span>
+                    <select id="select" onchange="subfilter()">
+                        <option value="">Escolha uma Opção</option>
+                        <option value="Região">Região</option>
+                        <option value="Capital">Capital</option>
+                        <option value="Lingua">Língua</option>
+                        <option value="País">País</option>
+                        <option value="Código de ligação">Código de ligação</option>
+                    </select>
+                </div>
+                <div id="subfilter"></div>
                 <div id="search">PESQUISAR</div>
             </div>
         </div>

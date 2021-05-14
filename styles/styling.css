@@ -37,10 +37,12 @@
     margin: 20px 10px 4px 10px;
     display: block;
     color: #6D2080;
-    font-size: 1.1em;
+    font-size: 1.4em;
 }
 /* Opções main */
 #select{
+    height: 40px;
+    font-size: 1em;
     background-color: transparent;
     border: none;
     box-shadow: 0 2px #ccc;
@@ -48,6 +50,19 @@
     margin-left: 10px;
     width: 100%;
     color: #8D8D8D;
+}
+/* Opções sub */
+#subselect{
+    height: 40px;
+    font-size: 1em;
+    background-color: transparent;
+    border: none;
+    box-shadow: 0 2px #ccc;
+    padding: 0 0 0 1em;
+    margin-left: 10px;
+    width: 100%;
+    color: #8D8D8D;
+    /* visibility: hidden; */
 }
 /* botão de pesquisa */
 #search{
@@ -59,7 +74,7 @@
     text-align: center;
     line-height: 40px;
     color: white;
-    margin: 140px 50px 50px 165px;
+    margin: 35px 50px 50px 165px;
     cursor: pointer;
 }
 /* ------------------------------------------------------------- */
