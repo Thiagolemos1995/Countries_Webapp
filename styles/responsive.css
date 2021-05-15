@@ -1,158 +1,20 @@
-*{
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
-* a{
-    text-decoration: none;
-}
-/* =========================index.html================================ */
-/* ------------------------------------------------------------- */
-/* Cabeçalho */
-#nav{
-    right: 8px;
-    width: 100vw;
-    height: 100px;
-    position: relative;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-#mova{
-    position: absolute;
-    top: 15px;
-    left: 5%;
-}
-#back{
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    background-image: url(/img/keyboard_return.png);
-    background-repeat: no-repeat;
-    top: 45px;
-    left: 88%;
-}
-
-/* Filtro */
-#filter{
-    width: 90vw;
-    height: 60px;
-}
-/* Texto do filtro main */
-#filterselect{
-    margin: 20px 10px 4px 10px;
-    display: block;
-    color: #6D2080;
-    font-size: 1.4em;
-}
-#subfilterselect{
-    margin: 20px 10px 4px 10px;
-    display: block;
-    color: #6D2080;
-    font-size: 1.4em;   
-}
-/* Opções main */
-#select{
-    height: 40px;
-    font-size: 1em;
-    background-color: transparent;
-    border: none;
-    box-shadow: 0 2px #ccc;
-    padding: 0 0 0 1em;
-    margin-left: 10px;
-    width: 100%;
-    color: #8D8D8D;
-}
-/* Opções sub */
-#subselect{
-    height: 40px;
-    font-size: 1em;
-    background-color: transparent;
-    border: none;
-    box-shadow: 0 2px #ccc;
-    padding: 0 0 0 1em;
-    margin-left: 10px;
-    width: 100%;
-    color: #8D8D8D;
-}
-/* Opções das inputs generalizadas */
-#generalinput{
-    width: 100%;
-    height: 40px;
-    font-size: 1em;
-    border: none;
-    box-shadow: 0 2px #ccc;
-    margin-left: 12px ;
-}
-/* botão de pesquisa */
-#search{
-    width: 160px;
-    height: 40px;
-    border-radius: 10px;
-    background-color: #6D2080;
-    font-size: 1em;
-    text-align: center;
-    line-height: 40px;
-    color: white;
-    margin: 35px 50px 50px 54%;
-    cursor: pointer;
-}
-/* ------------------------------------------------------------- */
-/* Lista de Países */
-#countries-list{
-    position: relative;
-    margin-top: 200px;
-    display: grid; -ms-display: grid;
-    grid-template-columns: (1fr); -ms-grid-template-columns: (1fr);
-    grid-gap: 17px;
-  }
-  /* Div de cada país */
-.flag {
-    min-height: 180px;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    cursor: pointer;
-    border-radius: 20px;
-    border: 0.5px solid black;
-  }
-  /* ================================================================= */
-
-  /* =========================country.html================================ */
-  /* ------------------------------------------------------------- */
-.flag-border {
-    min-height: 180px;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    cursor: pointer;
-    border-radius: 20px;
-    border: 0.5px solid black;
-}
-#country{
-    margin-top: 20px;
-}
-#countries-info, #contries-border{
-    position: relative;
-    display: grid; -ms-display: grid;
-    grid-template-columns: (1fr); -ms-grid-template-columns: (1fr);
-}
-.info, .info-border{
-    margin: 8px;
-    color: rgb(92, 91, 91);
-    border: none;
-}
-#name{
-    margin-top: 20px;
-}
-#border p{
-    font-weight: bolder;
-}
-#bordercountries{
-    margin-top: 25px;
-}
-  /* ================================================================= */
-
   /* ====================RESPONSIVIDADE===================== */
 
+@media screen and (min-width: 405px) {
+    #search{
+        margin: 35px 50px 50px 65%;
+    }
+}
+@media screen and (min-width: 450px) {
+    #search{
+        margin: 35px 50px 50px 70%;
+    }
+}
+@media screen and (min-width: 640px) {
+    #search{
+        margin: 35px 50px 50px 75%;
+    }
+}
 @media screen and (min-width: 768px) {
     /* --------------menu--------- */
     #mova{
@@ -218,7 +80,7 @@
         font-size: 1.2em;
         line-height: 60px;
         top: 70px;
-        left: 35%;
+        left: 10%;
     }
     /* ------------------------------------------------------------- */
     /* Lista de Países */
@@ -271,7 +133,7 @@
         font-size: 1.4em;
         line-height: 60px;
         top: 70px;
-        left: 35%;
+        left: 10%;
     }
     /* =========================country.html================================ */
     /* ------------------------------------------------------------- */
