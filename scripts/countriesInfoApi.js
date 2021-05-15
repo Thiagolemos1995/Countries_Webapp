@@ -25,13 +25,18 @@ fetch(`https://restcountries.eu/rest/v2/alpha/${paramsURL}`)
             // Inserindo as divs depois de cada elemento com a Template String
             countriesInfo.insertAdjacentHTML('beforeend', countryInfo);
             countriesInfo.insertAdjacentHTML('beforeend', `<div class="info-border" id="border"><p>Países Vizinhos:</p></div>`);
+            //Inserindo as divs com as flags dos países vizinhos
             for(let i=0; i<country.borders.length;i++){
                 let currentCountry = country.borders[i]
                 countriesBorder.insertAdjacentHTML('beforeend', `<a href="country.html?${currentCountry}">
                                                                  <div class="flag" id="bordercountries" style="background-image: url(https://restcountries.eu/data/${currentCountry.toLowerCase()}.svg);"></div></a>`);  
             }
 })
-
+//Voltar a página ao clicar na seta
 document.getElementById('back').onclick=()=>{
     window.history.go(-1);
+}
+//Redireciona para a página inicial quando clicado no link da Mova
+document.getElementById('mova').onclick=()=>{
+    window.location = 'index.html'
 }

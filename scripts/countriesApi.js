@@ -21,12 +21,17 @@ fetch('https://restcountries.eu/rest/v2/all')
             countriesList.insertAdjacentHTML('beforeend', countryCard);
     });
 });
-
+//Voltar a página ao clicar na seta
 document.getElementById('back').onclick=()=>{
     window.history.go(-1);
 }
-
+//Redireciona para a página inicial quando clicado no link da Mova
+document.getElementById('mova').onclick=()=>{
+    window.location = 'index.html'
+}
+//função que ativa o subfiltro
 function subfilter(){
+    //Declaração local das Template strings para cada tipo de filtro selecionado
     let regionfilter = `<span id="subfilterselect">Região</span>
                         <select id="subselect">
                             <option value="">Escolha uma Opção</option>
@@ -46,135 +51,144 @@ function subfilter(){
                       <input type="number" id="generalinput">`                
 
     var option = document.getElementById("select").value;
-    if(option == "Região"){
-        $("#search").click(function(){
-            $('#countries-list').empty()
-            let subselect = document.getElementById('subselect')
-            let region = subselect.options[subselect.selectedIndex].value
-            if(region !== ""){
-                fetch(`https://restcountries.eu/rest/v2/region/${region}`)
-                    .then(response => response.json())
-                    .then(function(countries){ 
-                        //Array com os países
-                        var countries = countries;
-                        countries.forEach(country => {            
-                            // Template Strings
-                            var countryCard = ` <a href="country.html?${country.alpha3Code}">
-                                                <article class="country">
-                                                <div class="flag" style="background-image: url(${country.flag});"></div>
-                                                </article>
-                                                </a>`;
-                            // Inserindo as divs depois de cada elemento com a Template String
-                            countriesList.insertAdjacentHTML('beforeend', countryCard);
+    switch(option){
+        case "Região":    //Se selecionado o filtro por Região
+            cardFilter.innerHTML = regionfilter
+            $("#search").click(function(){
+                $('#countries-list').empty()
+                window.console.log(option)
+                let subselect = document.getElementById('subselect')
+                let region = subselect.options[subselect.selectedIndex].value
+                if(region !== ""){
+                    fetch(`https://restcountries.eu/rest/v2/region/${region}`)
+                        .then(response => response.json())
+                        .then(function(countries){ 
+                            //Array com os países
+                            var countries = countries;
+                            countries.forEach(country => {            
+                                // Template Strings
+                                var countryCard = ` <a href="country.html?${country.alpha3Code}">
+                                                    <article class="country">
+                                                    <div class="flag" style="background-image: url(${country.flag});"></div>
+                                                    </article>
+                                                    </a>`;
+                                // Inserindo as divs depois de cada elemento com a Template String
+                                countriesList.insertAdjacentHTML('beforeend', countryCard);
+                        });
                     });
+                }
+            });
+        break
+
+        case "Capital":
+                //Se selecionado o filtro por Capital
+                cardFilter.innerHTML = capitalfilter
+                $("#search").click(function(){
+                    $('#countries-list').empty()
+                    let capital = document.getElementById('generalinput').value
+                    window.console.log(option)
+                    if(capital !== ""){
+                        fetch(`https://restcountries.eu/rest/v2/capital/${capital}`)
+                            .then(response => response.json())
+                            .then(function(countries){ 
+                                //Array com os países
+                                var countries = countries;
+                                countries.forEach(country => {            
+                                    // Template Strings
+                                    var countryCard = ` <a href="country.html?${country.alpha3Code}">
+                                                        <article class="country">
+                                                        <div class="flag" style="background-image: url(${country.flag});"></div>
+                                                        </article>
+                                                        </a>`;
+                                    // Inserindo as divs depois de cada elemento com a Template String
+                                    countriesList.insertAdjacentHTML('beforeend', countryCard);
+                            });
+                        });
+                    }
                 });
-            }
-        });
-        cardFilter.innerHTML = regionfilter
-    }
-    else if(option == "Capital"){
-        $("#search").click(function(){
-            $('#countries-list').empty()
-            let capital = document.getElementById('generalinput').value
-            if(capital !== ""){
-                fetch(`https://restcountries.eu/rest/v2/capital/${capital}`)
-                    .then(response => response.json())
-                    .then(function(countries){ 
-                        //Array com os países
-                        var countries = countries;
-                        countries.forEach(country => {            
-                            // Template Strings
-                            var countryCard = ` <a href="country.html?${country.alpha3Code}">
-                                                <article class="country">
-                                                <div class="flag" style="background-image: url(${country.flag});"></div>
-                                                </article>
-                                                </a>`;
-                            // Inserindo as divs depois de cada elemento com a Template String
-                            countriesList.insertAdjacentHTML('beforeend', countryCard);
+        break
+
+        case "Lingua":    //Se selecionado o filtro por Lingua
+            cardFilter.innerHTML = langfilter
+            $("#search").click(function(){
+                $('#countries-list').empty()
+                let et = document.getElementById('generalinput').value
+                if(et !== ""){
+                    fetch(`https://restcountries.eu/rest/v2/lang/${et}`)
+                        .then(response => response.json())
+                        .then(function(countries){ 
+                            //Array com os países
+                            var countries = countries;
+                            countries.forEach(country => {            
+                                // Template Strings
+                                var countryCard = ` <a href="country.html?${country.alpha3Code}">
+                                                    <article class="country">
+                                                    <div class="flag" style="background-image: url(${country.flag});"></div>
+                                                    </article>
+                                                    </a>`;
+                                // Inserindo as divs depois de cada elemento com a Template String
+                                countriesList.insertAdjacentHTML('beforeend', countryCard);
+                        });
                     });
-                });
-            }
-        });
-        cardFilter.innerHTML = capitalfilter
-    }
-    else if(option == "Lingua"){
-        $("#search").click(function(){
-            $('#countries-list').empty()
-            let et = document.getElementById('generalinput').value
-            if(et !== ""){
-                fetch(`https://restcountries.eu/rest/v2/lang/${et}`)
-                    .then(response => response.json())
-                    .then(function(countries){ 
-                        //Array com os países
-                        var countries = countries;
-                        countries.forEach(country => {            
-                            // Template Strings
-                            var countryCard = ` <a href="country.html?${country.alpha3Code}">
-                                                <article class="country">
-                                                <div class="flag" style="background-image: url(${country.flag});"></div>
-                                                </article>
-                                                </a>`;
-                            // Inserindo as divs depois de cada elemento com a Template String
-                            countriesList.insertAdjacentHTML('beforeend', countryCard);
+                }
+            });
+        break
+
+        case "Moeda":    //Se selecionado o filtro por Moeda
+            cardFilter.innerHTML = countryfilter
+            $("#search").click(function(){
+                $('#countries-list').empty()
+                let moeda = document.getElementById('generalinput').value.toLowerCase()
+                if(moeda !== ""){
+                    fetch(`https://restcountries.eu/rest/v2/currency/${moeda}`)
+                        .then(response => response.json())
+                        .then(function(countries){ 
+                            //Array com os países
+                            var countries = countries;
+                            countries.forEach(country => {            
+                                // Template Strings
+                                var countryCard = ` <a href="country.html?${country.alpha3Code}">
+                                                    <article class="country">
+                                                    <div class="flag" style="background-image: url(${country.flag});"></div>
+                                                    </article>
+                                                    </a>`;
+                                // Inserindo as divs depois de cada elemento com a Template String
+                                countriesList.insertAdjacentHTML('beforeend', countryCard);
+                        });
                     });
-                });
-            }
-        });
-        cardFilter.innerHTML = langfilter
-    }
-    else if(option == "Moeda"){
-        $("#search").click(function(){
-            $('#countries-list').empty()
-            let moeda = document.getElementById('generalinput').value.toLowerCase()
-            if(moeda !== ""){
-                fetch(`https://restcountries.eu/rest/v2/currency/${moeda}`)
-                    .then(response => response.json())
-                    .then(function(countries){ 
-                        //Array com os países
-                        var countries = countries;
-                        countries.forEach(country => {            
-                            // Template Strings
-                            var countryCard = ` <a href="country.html?${country.alpha3Code}">
-                                                <article class="country">
-                                                <div class="flag" style="background-image: url(${country.flag});"></div>
-                                                </article>
-                                                </a>`;
-                            // Inserindo as divs depois de cada elemento com a Template String
-                            countriesList.insertAdjacentHTML('beforeend', countryCard);
+                }
+            });
+        break
+
+        case "Código de ligação":    //Se selecionado o filtro por Codigo de Ligação
+            cardFilter.innerHTML = codefilter
+            $("#search").click(function(){
+                $('#countries-list').empty()
+                let callingcode = parseInt(document.getElementById('generalinput').value)
+                if(callingcode !== ""){
+                    fetch(`https://restcountries.eu/rest/v2/callingcode/${callingcode}`)
+                        .then(response => response.json())
+                        .then(function(countries){ 
+                            //Array com os países
+                            var countries = countries;
+                            countries.forEach(country => {            
+                                // Template Strings
+                                var countryCard = ` <a href="country.html?${country.alpha3Code}">
+                                                    <article class="country">
+                                                    <div class="flag" style="background-image: url(${country.flag});"></div>
+                                                    </article>
+                                                    </a>`;
+                                // Inserindo as divs depois de cada elemento com a Template String
+                                countriesList.insertAdjacentHTML('beforeend', countryCard);
+                        });
                     });
-                });
-            }
-        });
-        cardFilter.innerHTML = countryfilter
-    }
-    else if(option == "Código de ligação"){
-        $("#search").click(function(){
-            $('#countries-list').empty()
-            let callingcode = parseInt(document.getElementById('generalinput').value)
-            if(callingcode !== ""){
-                fetch(`https://restcountries.eu/rest/v2/callingcode/${callingcode}`)
-                    .then(response => response.json())
-                    .then(function(countries){ 
-                        //Array com os países
-                        var countries = countries;
-                        countries.forEach(country => {            
-                            // Template Strings
-                            var countryCard = ` <a href="country.html?${country.alpha3Code}">
-                                                <article class="country">
-                                                <div class="flag" style="background-image: url(${country.flag});"></div>
-                                                </article>
-                                                </a>`;
-                            // Inserindo as divs depois de cada elemento com a Template String
-                            countriesList.insertAdjacentHTML('beforeend', countryCard);
-                    });
-                });
-            }
-        });
-        cardFilter.innerHTML = codefilter
-    }else{
-        $("#search").click(function(){
-            $('#countries-list').empty()
-            
-        });
+                }
+            });
+        break
+
+        default:    //Nenhum filtro selecionado
+            $("#search").click(function(){
+                $('#countries-list').empty()
+            });
     }
 }
